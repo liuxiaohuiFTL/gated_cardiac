@@ -1,0 +1,47 @@
+data:
+    dataset: "3d"
+    image_size: 80
+    slice: 64
+    channels: 1
+    data_dir: "./dataset/"
+    num_workers: 16
+    conditional: True
+
+model:
+    in_channels: 1
+    out_ch: 1
+    ch: 128
+    ch_mult: [1, 2, 3, 4]
+    num_res_blocks: 2
+    attn_resolutions: [36,]
+    dropout: 0.0
+    ema_rate: 0.999
+    ema: True
+    resamp_with_conv: False
+
+diffusion:
+    beta_schedule: linear
+    beta_start: 0.0001
+    beta_end: 0.02
+    num_diffusion_timesteps: 1000
+    sampling_timesteps: 25
+
+training:
+    patch_n: 16
+    batch_size: 1
+    n_epochs: 4000
+    n_iters: 2000000
+    snapshot_freq: 10000
+    validation_freq: 10000
+
+sampling:
+    batch_size: 1
+    last_only: True
+    fold: 0
+
+optim:
+    weight_decay: 0.000
+    optimizer: "Adam"
+    lr: 0.00002
+    amsgrad: False
+    eps: 0.00000001
